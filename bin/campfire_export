@@ -42,7 +42,7 @@ def ensure_config_for(config, key, prompt)
 end
 
 config = {}
-config_file = File.join(ENV['HOME'], '.campfire_export.yaml')
+config_file = File.join(ENV['HOME'], '.campfire_export.yml')
 
 if File.exists?(config_file) and File.readable?(config_file)
   config = YAML.load_file(config_file)
