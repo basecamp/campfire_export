@@ -58,6 +58,10 @@ begin
                                         config['api_token'])
   account.find_timezone
   account.rooms.each do |room|
+    if config["room_name"] && room.name != config["room_name"]
+      next
+    end
+
     room.export(config_date(config, 'start_date'),
                 config_date(config, 'end_date'))
   end
