@@ -1,5 +1,4 @@
-require 'campfire_export'
-require 'tzinfo'
+require 'spec_helper'
 
 module CampfireExport
   describe Account do
@@ -7,7 +6,7 @@ module CampfireExport
       @subdomain = "test-subdomain"
       @api_token = "test-apikey"
       @account   = Account.new(@subdomain, @api_token)
-      
+
       @good_timezone = '<?xml version="1.0" encoding="UTF-8"?>' +
 					   '<account>' +
 					   '  <time-zone>America/Los_Angeles</time-zone>' +
@@ -21,12 +20,12 @@ module CampfireExport
 					   '  <id type="integer">999999</id>' +
 					   '</account>'
 
-      @bad_timezone  = @good_timezone.gsub('America/Los_Angeles', 
+      @bad_timezone  = @good_timezone.gsub('America/Los_Angeles',
                                            'No Such Timezone')
       @account_xml = stub("Account XML")
       @account_xml.stub(:body).and_return(@good_timezone)
     end
-      
+
     context "when it is created" do
       it "sets up the account config variables" do
         Account.subdomain.should equal(@subdomain)
@@ -34,15 +33,15 @@ module CampfireExport
         Account.base_url.should == "https://#{@subdomain}.campfirenow.com"
       end
     end
-    
+
     context "when timezone is loaded" do
       it "determines the user's timezone" do
         @account.should_receive(:get).with("/account.xml"
           ).and_return(@account_xml)
         @account.find_timezone
-        Account.timezone.to_s.should == "America - Los Angeles"        
+        Account.timezone.to_s.should == "America - Los Angeles"
       end
-      
+
       it "raises an error if it gets a bad time zone identifier" do
         @account_xml.stub(:body).and_return(@bad_timezone)
         @account.stub(:get).with("/account.xml"
@@ -51,17 +50,17 @@ module CampfireExport
           @account.find_timezone
         }.to raise_error(TZInfo::InvalidTimezoneIdentifier)
       end
-      
+
       it "raises an error if it can't get the account settings at all" do
         @account.stub(:get).with("/account.xml"
-          ).and_raise(CampfireExport::Exception.new("/account/settings", 
+          ).and_raise(CampfireExport::Exception.new("/account/settings",
             "Not Found", 404))
         expect {
           @account.find_timezone
         }.to raise_error(CampfireExport::Exception)
       end
     end
-        
+
     context "when rooms are requested" do
       it "returns an array of rooms" do
         room_xml = "<rooms><room>1</room><room>2</room><room>3</room></rooms>"
@@ -75,7 +74,7 @@ module CampfireExport
 
       it "raises an error if it can't get the room list" do
         @account.stub(:get).with('/rooms.xml'
-          ).and_raise(CampfireExport::Exception.new('/rooms.xml', 
+          ).and_raise(CampfireExport::Exception.new('/rooms.xml',
             "Not Found", 404))
         expect {
           @account.rooms

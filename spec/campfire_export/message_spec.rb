@@ -1,12 +1,9 @@
-require 'campfire_export'
-require 'campfire_export/timezone'
+require 'spec_helper'
 
-require 'nokogiri'
-
-module CampfireExport  
+module CampfireExport
   describe Message do
     include TimeZone
-    
+
     before :each do
       @messages = Nokogiri::XML  <<XML
 <messages>
@@ -44,7 +41,7 @@ module CampfireExport
 XML
       Account.timezone = find_tzinfo("America/Los_Angeles")
     end
-    
+
     context "when it is created" do
       it "sets up basic properties" do
         message = Message.new(@messages.xpath('/messages/message[3]')[0], nil, nil)
