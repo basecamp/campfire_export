@@ -1,10 +1,12 @@
 module CampfireExport
   class Exception < StandardError
-    attr_accessor :resource, :message, :code
+
+    attr_reader :resource, :message, :code
+
     def initialize(resource, message, code=nil)
       @resource = resource
-      @message = message
-      @code = code
+      @message  = message
+      @code     = code
     end
 
     def to_s
