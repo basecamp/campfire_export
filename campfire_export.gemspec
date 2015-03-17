@@ -23,6 +23,7 @@ Gem::Specification.new do |s|
   s.add_dependency "tzinfo",   "~> 1.2"
   s.add_dependency "httparty", "~> 0.13"
   s.add_dependency "nokogiri", "~> 1.6.6"
+  s.add_dependency "retryable", "~> 2.0"
 
   s.files         = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")

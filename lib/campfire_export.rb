@@ -26,6 +26,7 @@ require 'cgi'
 require 'fileutils'
 require 'httparty'
 require 'nokogiri'
+require 'retryable'
 require 'time'
 require 'yaml'
 
@@ -37,8 +38,11 @@ module CampfireExport
 
     def get(path, params = {})
       url = api_url(path)
-      response = HTTParty.get(url, :query => params, :basic_auth =>
-        {:username => CampfireExport::Account.api_token, :password => 'X'})
+
+      response = Retryable.retryable(:tries => 5, :on => [TimeoutError]) do
+        HTTParty.get(url, :query => params, :basic_auth =>
+          {:username => CampfireExport::Account.api_token, :password => 'X'})
+      end
 
       if response.code >= 400
         raise CampfireExport::Exception.new(url, response.message, response.code)
