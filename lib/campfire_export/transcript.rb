@@ -16,7 +16,7 @@ module CampfireExport
       begin
         log(:info, "#{export_dir} ... ")
         @xml = Nokogiri::XML get("#{transcript_path}.xml").body
-      rescue Exception => e
+      rescue => e
         log(:error, "transcript export for #{export_dir} failed", e)
       else
         @messages = xml.xpath('/messages/message').map do |message|
@@ -28,7 +28,7 @@ module CampfireExport
           log(:info, "exporting transcripts\n")
           begin
             FileUtils.mkdir_p export_dir
-          rescue Exception => e
+          rescue => e
             log(:error, "Unable to create #{export_dir}", e)
           else
             export_xml
@@ -46,7 +46,7 @@ module CampfireExport
       begin
         export_file(xml, 'transcript.xml')
         verify_export('transcript.xml', xml.to_s.length)
-      rescue Exception => e
+      rescue => e
         log(:error, "XML transcript export for #{export_dir} failed", e)
       end
     end
@@ -59,7 +59,7 @@ module CampfireExport
         messages.each {|message| plaintext << message.to_s }
         export_file(plaintext, 'transcript.txt')
         verify_export('transcript.txt', plaintext.length)
-      rescue Exception => e
+      rescue => e
         log(:error, "Plaintext transcript export for #{export_dir} failed", e)
       end
     end
@@ -79,7 +79,7 @@ module CampfireExport
 
         export_file(transcript_html, 'transcript.html')
         verify_export('transcript.html', transcript_html.length)
-      rescue Exception => e
+      rescue => e
         log(:error, "HTML transcript export for #{export_dir} failed", e)
       end
     end
@@ -89,7 +89,7 @@ module CampfireExport
         if message.is_upload?
           begin
             message.upload.export
-          rescue Exception => e
+          rescue => e
             path = "#{message.upload.export_dir}/#{message.upload.filename}"
             log(:error, "Upload export for #{path} failed", e)
           end
