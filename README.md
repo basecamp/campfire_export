@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/stackbuilders/campfire_export.png)](https://travis-ci.org/stackbuilders/campfire_export)
+
 # campfire_export #
 
 ## Quick Start ##
@@ -8,7 +10,7 @@
 ## Intro ##
 
 I had an old, defunct [Campfire](http://campfirenow.com/) account with five
-years' worth of transcripts in it, some of them hilarious, others just 
+years' worth of transcripts in it, some of them hilarious, others just
 memorable. Unfortunately, Campfire doesn't currently have an export function;
 instead it provides pages of individual transcripts. I wanted a script to
 export everything from all five years, using the Campfire API.
