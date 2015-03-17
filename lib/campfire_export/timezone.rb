@@ -9,7 +9,7 @@ module CampfireExport
   # https://github.com/rails/rails/blob/master/activesupport/lib/active_support/values/time_zone.rb
   # I'm copying it here to avoid bugs in the current active_support gem, to
   # avoid having a dependency on active_support that might freak out Rails
-  # users, and to avoid fighting with RubyGems about threads and deprecation. 
+  # users, and to avoid fighting with RubyGems about threads and deprecation.
   # See for background:
   # https://github.com/rails/rails/pull/1215
   # http://stackoverflow.com/questions/5176782/uninitialized-constant-activesupportdependenciesmutex-nameerror
@@ -160,7 +160,7 @@ module CampfireExport
       "Nuku'alofa"                   => "Pacific/Tongatapu"
     }.each { |name, zone| name.freeze; zone.freeze }
     MAPPING.freeze
-    
+
     def find_tzinfo(name)
       TZInfo::Timezone.get(MAPPING[name] || name)
     end
