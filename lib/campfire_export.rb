@@ -44,7 +44,7 @@ module CampfireExport
       response = Retryable.retryable(:tries => MAX_RETRIES) do |retries, exception|
         if retries > 0
           msg = "Attempt ##{retries} to fetch #{path} failed, " +
-                "#{MAX_RETRIES - retries} attempts remaining."
+                "#{MAX_RETRIES - retries} attempts remaining"
           log :error, msg, exception
         end
 
