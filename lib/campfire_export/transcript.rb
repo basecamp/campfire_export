@@ -45,7 +45,7 @@ module CampfireExport
     def export_xml
       begin
         export_file(xml, 'transcript.xml')
-        verify_export('transcript.xml', xml.to_s.length)
+        verify_export('transcript.xml', xml.to_s.bytesize)
       rescue => e
         log(:error, "XML transcript export for #{export_dir} failed", e)
       end
@@ -58,7 +58,7 @@ module CampfireExport
         plaintext << "#{room.name}: #{date_header}\n\n"
         messages.each {|message| plaintext << message.to_s }
         export_file(plaintext, 'transcript.txt')
-        verify_export('transcript.txt', plaintext.length)
+        verify_export('transcript.txt', plaintext.bytesize)
       rescue => e
         log(:error, "Plaintext transcript export for #{export_dir} failed", e)
       end
@@ -66,7 +66,7 @@ module CampfireExport
 
     def export_html
       begin
-        transcript_html = get(transcript_path)
+        transcript_html = get(transcript_path).to_s
 
         # Make the upload links in the transcript clickable from the exported
         # directory layout.
@@ -78,7 +78,7 @@ module CampfireExport
                               %Q{src="thumbs/})
 
         export_file(transcript_html, 'transcript.html')
-        verify_export('transcript.html', transcript_html.length)
+        verify_export('transcript.html', transcript_html.bytesize)
       rescue => e
         log(:error, "HTML transcript export for #{export_dir} failed", e)
       end
