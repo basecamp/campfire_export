@@ -17,7 +17,7 @@ including the following:
 * Upgrade gem dependencies and add support for Ruby versions >= 1.9.3
 * Retry up to 5 times before giving up on a resource. Makes campfire_export usable for large exports.
 * Fixes file size validation when file contains Unicode.
-* Allow export of a specific room
+* Allow export of a specific room instead of exporting all rooms on a Campfire account.
 
 When you install the gem following the instructions above (i.e., with the name
 stackbuilders-campfire-export) you will get these fixes, and the project will run
