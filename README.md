@@ -14,8 +14,7 @@ This gem is a fork from the original version of this project by
 still his, this fork contains fixes and updates for user-facing issues,
 including the following:
 
-* Bump gem dependencies for modern (> 2.0) Ruby versions
-* Remove support for deprecated Ruby 1.8.7 (which won't compile newer Nokogiri versions, and is deprecated anyway)
+* Upgrade gem dependencies and add support for Ruby versions >= 1.9.3
 * Retry up to 5 times before giving up on a resource. Makes campfire_export usable for large exports.
 * Fixes file size validation when file contains Unicode.
 
