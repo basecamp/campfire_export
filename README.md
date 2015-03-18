@@ -17,6 +17,7 @@ including the following:
 * Upgrade gem dependencies and add support for Ruby versions >= 1.9.3
 * Retry up to 5 times before giving up on a resource. Makes campfire_export usable for large exports.
 * Fixes file size validation when file contains Unicode.
+* Allow export of a specific room
 
 When you install the gem following the instructions above (i.e., with the name
 stackbuilders-campfire-export) you will get these fixes, and the project will run
@@ -80,6 +81,11 @@ directory using this template:
     # OPTIONAL: Export end date - the last transcript you want exported.
     # Uncomment to set. Defaults to the date of the last comment in each room.
     #end_date:   2010/12/31
+
+    # OPTIONAL: Campfire room - the room you want exported. All other rooms
+    # will be skipped.
+    # Uncomment to set. Defaults to all rooms.
+    #room_name:   Stack Builders Website Dev
 
 The `start_date` and `end_date` variables are inclusive (that is, if your
 end date is Dec 31, 2010, a transcript for that date will be downloaded), and
