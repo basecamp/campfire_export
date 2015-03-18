@@ -65,7 +65,7 @@ Once you are set up, to install, run the following:
 There are a number of configuration variables required to run the export. The
 export script will prompt you for these; just run it and away you go. If you
 want to run the script repeatedly or want to control the start and end date of
-the export, you can create a `.campfire_export.yaml` file in your home
+the export, you can create a `.campfire_export.yml` file in your home
 directory using this template:
 
     # Your Campfire subdomain (for 'https://myco.campfirenow.com', use 'myco').
