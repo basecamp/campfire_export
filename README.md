@@ -7,6 +7,27 @@
     $ sudo gem install stackbuilders-campfire_export
     $ campfire_export
 
+## Note ##
+
+This gem is a fork from the original version of this project by
+[Marc Hedlund](https://github.com/precipice). While almost all of the work is
+still his, this fork contains fixes and updates for user-facing issues,
+including the following:
+
+* Bump gem dependencies for modern (> 2.0) Ruby versions
+* Remove support for deprecated Ruby 1.8.7 (which won't compile newer Nokogiri versions, and is deprecated anyway)
+* Retry up to 5 times before giving up on a resource. Makes campfire_export usable for large exports.
+* Fixes file size validation when file contains Unicode.
+
+When you install the gem following the instructions above (i.e., with the name
+stackbuilders-campfire-export) you will get these fixes, and the project will run
+on modern Ruby versions.
+
+We will try to respond to issues and pull requests on the
+[Stack Builders](http://www.stackbuilders.com) fork of this repository
+(https://github.com/stackbuilders/campfire_export), and to push new releases in
+a timely manner to https://rubygems.org/gems/stackbuilders-campfire_export.
+
 ## Intro ##
 
 I had an old, defunct [Campfire](http://campfirenow.com/) account with five
