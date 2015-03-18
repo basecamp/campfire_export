@@ -4,7 +4,7 @@
 
 ## Quick Start ##
 
-    $ sudo gem install campfire_export
+    $ sudo gem install stackbuilders-campfire_export
     $ campfire_export
 
 ## Intro ##
@@ -100,6 +100,7 @@ Also, thanks much for all the help, comments and contributions:
 * [Junya Ogura](https://github.com/juno)
 * [Chase Lee](https://github.com/chaselee)
 * [Alex Hofsteede](https://github.com/alex-hofsteede)
+* [Justin Leitgeb](https://github.com/jsl)
 
 As mentioned above, some of the work on this was done by other people. The
 Gist I forked had contributions from:
