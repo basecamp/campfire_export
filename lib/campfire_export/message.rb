@@ -26,7 +26,7 @@ module CampfireExport
       @@usernames          ||= {}
       @@usernames[user_id] ||= begin
         doc = Nokogiri::XML get("/users/#{user_id}.xml").body
-      rescue Exception => e
+      rescue => e
         "[unknown user]"
       else
         # Take the first name and last initial, if there is more than one name.

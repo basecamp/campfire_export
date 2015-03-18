@@ -33,7 +33,7 @@ module CampfireExport
           last_message = Nokogiri::XML get("/room/#{id}/recent.xml?limit=1").body
           update_utc   = DateTime.parse(last_message.xpath('/messages/message[1]/created-at').text)
           @last_update = Account.timezone.utc_to_local(update_utc)
-        rescue StandardError => e
+        rescue => e
           log(:error,
               "couldn't get last update in #{room} (defaulting to today)",
               e)

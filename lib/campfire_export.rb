@@ -32,6 +32,8 @@ require 'yaml'
 
 module CampfireExport
   module IO
+    MAX_RETRIES = 5
+
     def api_url(path)
       "#{CampfireExport::Account.base_url}#{path}"
     end
@@ -39,7 +41,13 @@ module CampfireExport
     def get(path, params = {})
       url = api_url(path)
 
-      response = Retryable.retryable(:tries => 5, :on => [TimeoutError]) do
+      response = Retryable.retryable(:tries => MAX_RETRIES) do |retries, exception|
+        if retries > 0
+          msg = "Attempt ##{retries} to fetch #{path} failed, " +
+                "#{MAX_RETRIES - retries} attempts remaining."
+          log :error, msg, exception
+        end
+
         HTTParty.get(url, :query => params, :basic_auth =>
           {:username => CampfireExport::Account.api_token, :password => 'X'})
       end
