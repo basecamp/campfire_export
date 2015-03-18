@@ -4,7 +4,7 @@
 
 ## Quick Start ##
 
-    $ sudo gem install stackbuilders-campfire_export
+    $ gem install stackbuilders-campfire_export
     $ campfire_export
 
 ## Note ##
@@ -58,7 +58,7 @@ recommend having the latest version of RubyGems installed before starting.
 
 Once you are set up, to install, run the following:
 
-    $ sudo gem install campfire_export
+    $ gem install campfire_export
 
 ## Configuring ##
 
@@ -72,7 +72,7 @@ directory using this template:
     subdomain:  myco
 
     # Your Campfire API token (see "My Info" on your Campfire site).
-    api_token:  abababababababababababababababababababab
+    api_token:  your-campfire-token
 
     # OPTIONAL: Export start date - the first transcript you want exported.
     # Uncomment to set. Defaults to the date each room was created.
