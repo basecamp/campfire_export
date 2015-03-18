@@ -22,7 +22,7 @@ module CampfireExport
 
       @bad_timezone  = @good_timezone.gsub('America/Los_Angeles',
                                            'No Such Timezone')
-      @account_xml = stub("Account XML")
+      @account_xml = double("Account XML")
       @account_xml.stub(:body).and_return(@good_timezone)
     end
 
@@ -64,18 +64,17 @@ module CampfireExport
     context "when rooms are requested" do
       it "returns an array of rooms" do
         room_xml = "<rooms><room>1</room><room>2</room><room>3</room></rooms>"
-        room_doc = mock("room doc")
+        room_doc = double("room doc")
         room_doc.should_receive(:body).and_return(room_xml)
         @account.should_receive(:get).with('/rooms.xml').and_return(room_doc)
-        room = mock("room")
+        room = double("room")
         Room.should_receive(:new).exactly(3).times.and_return(room)
-        @account.rooms.should have(3).items
+        expect(@account.rooms.size).to eq(3)
       end
 
       it "raises an error if it can't get the room list" do
-        @account.stub(:get).with('/rooms.xml'
-          ).and_raise(CampfireExport::Exception.new('/rooms.xml',
-            "Not Found", 404))
+        allow(@account).to receive(:get).with('/rooms.xml') { raise(CampfireExport::Exception.new('/rooms.xml', "Not Found", 404)) }
+
         expect {
           @account.rooms
         }.to raise_error(CampfireExport::Exception)
