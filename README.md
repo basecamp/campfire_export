@@ -31,7 +31,7 @@ repo and a [Ruby gem](http://docs.rubygems.org/read/chapter/1).
 
 ## Installing ##
 
-[Ruby 1.8.7](http://www.ruby-lang.org/en/downloads/) or later is required.
+[Ruby 1.9.3](http://www.ruby-lang.org/en/downloads/) or later is required.
 [RubyGems](https://rubygems.org/pages/download) is also required -- I'd
 recommend having the latest version of RubyGems installed before starting.
 
