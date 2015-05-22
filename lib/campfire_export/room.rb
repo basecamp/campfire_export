@@ -35,9 +35,9 @@ module CampfireExport
           @last_update = Account.timezone.utc_to_local(update_utc)
         rescue => e
           log(:error,
-              "couldn't get last update in #{room} (defaulting to today)",
+              "couldn't get last update in #{name} (defaulting to today)",
               e)
-          @last_update = Time.now
+          @last_update = Date.new()
         end
       end
   end
