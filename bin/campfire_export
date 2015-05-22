@@ -62,6 +62,7 @@ begin
       next
     end
 
+    puts "exporting room: #{room.name}"
     room.export(config_date(config, 'start_date'),
                 config_date(config, 'end_date'))
   end
