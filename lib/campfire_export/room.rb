@@ -37,7 +37,7 @@ module CampfireExport
           log(:error,
               "couldn't get last update in #{name} (defaulting to today)",
               e)
-          @last_update = Date.new()
+          @last_update = Time.now
         end
       end
   end
